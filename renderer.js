@@ -17,9 +17,10 @@ downloadButton.addEventListener('click', () => {
     const video = ytdl(urlInput.value);
     video.on('progress', (chunkLength, downloaded, totalLength) => {
       //con.log(chunkLength, downloaded, totalLength);
-      const progress = (downloaded / totalLength).toFixed(2);
-      progressBar.innerText = progress;
-      progressBar.setAttribute('style', 'width:' + progress * 100 + '%');
+      const progress = (downloaded / totalLength).toFixed(2) * 100;
+      progressBar.innerText = progress + '%';
+      progressBar.setAttribute('style', 'width:' + progress + '%');
+      progressBar.setAttribute('aria-valuenow', progress + '');
       progressBar.setAttribute('class',
           'progress-bar progress-bar-striped progress-bar-animated');
       if (downloaded == totalLength) {
