@@ -8,7 +8,7 @@ const ytdl = require('ytdl-core');
 
 const downloadButton = document.getElementById('download');
 const urlInput = document.getElementById('url_input');
-
+const progressBar = document.getElementById('progressBar');
 const manager = {};
 
 downloadButton.addEventListener('click', () => {
@@ -17,13 +17,18 @@ downloadButton.addEventListener('click', () => {
     const video = ytdl(urlInput.value);
     video.on('progress', (chunkLength, downloaded, totalLength) => {
       //con.log(chunkLength, downloaded, totalLength);
+      const progress = (downloaded / totalLength).toFixed(2);
+      progressBar.innerText = progress;
+      progressBar.setAttribute('style', 'width:' + progress * 100 + '%');
+      progressBar.setAttribute('class',
+          'progress-bar progress-bar-striped progress-bar-animated');
       if (downloaded == totalLength) {
-        con.log('fin');
+        progressBar.setAttribute('class', 'progress-bar progress-bar-striped');
         manager[urlInput.value] = false;
       }
     });
     video.on('info', (chunkLength, downloaded) => {
-      con.log(chunkLength, downloaded)
+      //con.log(chunkLength, downloaded)
     });
     video.pipe(fs.createWriteStream('video.mp4'));
   }
