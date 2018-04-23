@@ -1,7 +1,7 @@
 {
-  "name": "Dayvie's Youtube Downloader ELECTRON",
+  "name": "dyde",
   "version": "1.0.0",
-  "description": "Dayvie's Youtube Downloader ELECTRON",
+  "description": "Dayvie's Youtube Downloader Electron",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
