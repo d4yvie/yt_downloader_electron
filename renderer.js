@@ -20,12 +20,12 @@ const downloadManager = {};
 downloadButton.addEventListener('click', async () => {
   const url = urlInput.value;
   const id = urlInput.value + ' (.' + dropDown.innerText + ')';
+  let downloading;
   if (!downloadManager[id]) {
     downloadManager[id] = true;
     const video = ytdl(url,
         {filter: (format) => format.container === dropDown.innerText});
-    const downloading = createDownloading(id);
-    downloadingArea.appendChild(downloading);
+    downloadingArea.appendChild(createFetchingDiv(id, url));
     video.on('progress', (chunkLength, downloaded, totalLength) => {
       //con.log(chunkLength, downloaded, totalLength);
       const progress = (downloaded / totalLength).toFixed(2) * 100;
@@ -49,9 +49,10 @@ downloadButton.addEventListener('click', async () => {
     video.on('info', (metaData, format) => {
       if (!started) {
         started = true;
+        document.getElementById(id).remove();
+        downloading = downloadingArea.appendChild(createMetaDataDiv(id));
         const label = document.getElementById(id + '-label');
         label.innerText = label.innerText + ' - ' + metaData.title;
-        downloading.setAttribute('style', '');
         video.pipe(fs.createWriteStream(metaData.title.replace(
             /[&\/\\#,+()$~%.'":*?<>{}]/g, '') + '.' + dropDown.innerText));
       }
@@ -59,11 +60,22 @@ downloadButton.addEventListener('click', async () => {
   }
 });
 
-function createDownloading(id) {
+function createFetchingDiv(id, url) {
   const row = document.createElement('div');
   row.setAttribute('id', id);
   row.setAttribute('class', 'row border');
-  row.setAttribute('style', 'display:none');
+  const col = document.createElement('div');
+  col.setAttribute('class', 'col-12');
+  col.innerText = 'Fetching data... for: ' + url;
+  row.appendChild(col);
+  return row;
+}
+
+function createMetaDataDiv(id) {
+
+  const row = document.createElement('div');
+  row.setAttribute('id', id);
+  row.setAttribute('class', 'row border');
 
   const col = document.createElement('div');
   col.setAttribute('class', 'col');
