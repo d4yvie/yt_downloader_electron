@@ -14,16 +14,16 @@ const finished = document.getElementById('finished');
 const manager = {};
 
 downloadButton.addEventListener('click', () => {
-  const id = urlInput.value
+  const id = urlInput.value;
   if (!manager[id]) {
     manager[id] = true;
+    const video = ytdl(id);
     const downloading = createDownloading(id);
     downloadingArea.appendChild(downloading);
-    const video = ytdl(id);
     video.on('progress', (chunkLength, downloaded, totalLength) => {
       con.log(chunkLength, downloaded, totalLength);
       const progress = (downloaded / totalLength).toFixed(2) * 100;
-      const progressBar = document.getElementById(id+'-bar');
+      const progressBar = document.getElementById(id + '-bar');
       progressBar.innerText = progress + '%';
       progressBar.setAttribute('style', 'width:' + progress + '%');
       progressBar.setAttribute('aria-valuenow', progress + '');
@@ -32,8 +32,8 @@ downloadButton.addEventListener('click', () => {
       if (downloaded == totalLength) {
         progressBar.setAttribute('class', 'progress-bar progress-bar-striped');
         manager[id] = false;
-        downloading.remove()
-        finished.appendChild(downloading)
+        downloading.remove();
+        finished.appendChild(downloading);
       }
     });
     video.on('info', (chunkLength, downloaded) => {
@@ -43,29 +43,33 @@ downloadButton.addEventListener('click', () => {
   }
 });
 
-function createDownloading(id){
-  const row = document.createElement("div");
+function createDownloading(id) {
+  const row = document.createElement('div');
   row.setAttribute('id', id);
   row.setAttribute('class', 'row');
 
-  const col = document.createElement("div");
-  col.setAttribute('class', 'col')
-  row.appendChild(col)
+  const col = document.createElement('div');
+  col.setAttribute('class', 'col');
+  row.appendChild(col);
 
-  const progress = document.createElement("div");
-  progress.setAttribute('class', 'progress')
-  col.appendChild(progress)
+  const label = document.createElement('label');
+  label.innerText = id
+  col.appendChild(label)
 
-  const progressBar = document.createElement("div");
-  progressBar.setAttribute('class', 'progress-bar')
-  progressBar.setAttribute('role', 'progressbar')
+  const progress = document.createElement('div');
+  progress.setAttribute('class', 'progress');
+  col.appendChild(progress);
+
+  const progressBar = document.createElement('div');
+  progressBar.setAttribute('class', 'progress-bar');
+  progressBar.setAttribute('role', 'progressbar');
   progressBar.setAttribute('aria-valuenow', '0');
   progressBar.setAttribute('aria-valuemin', '0');
   progressBar.setAttribute('aria-valuemax', '100');
-  progressBar.setAttribute('id', id+'-bar')
+  progressBar.setAttribute('id', id + '-bar');
   progressBar.value = '0%';
 
-  progress.appendChild(progressBar)
+  progress.appendChild(progressBar);
 
-  return row
+  return row;
 }

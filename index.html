@@ -20,8 +20,20 @@
 <div class="container-fluid">
 
     <h1>Youtube Downloader</h1>
+
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control"
+                   placeholder="Enter Youtubelink"
+                   aria-label="Username" aria-describedby="basic-addon1" id="url_input">
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary" id="download" onClick="download();">Download</button>
+        </div>
+    </div>
+
     <div id="downloading">
-        Downloading
+        Downloading:
         <!--
         <div class="row">
             <div class="col">
@@ -36,18 +48,9 @@
         -->
     </div>
     <div id="finished">
-        Finished
+        Finished:
     </div>
-    <div class="row">
-        <div class="col">
-            <input type="text" class="form-control"
-                   placeholder="Enter Youtubelink"
-                   aria-label="Username" aria-describedby="basic-addon1" id="url_input">
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-primary" id="download" onClick="download();">Download</button>
-        </div>
-    </div>
+
 </div>
 
 <script>
