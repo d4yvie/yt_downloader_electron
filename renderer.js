@@ -30,13 +30,13 @@ downloadButton.addEventListener('click', async () => {
       //con.log(chunkLength, downloaded, totalLength);
       const progress = (downloaded / totalLength).toFixed(2) * 100;
       const progressBar = document.getElementById(id + '-bar');
-      progressBar.innerText = progress + '%';
+      progressBar.innerText = progress.toFixed(0) + '%';
       progressBar.setAttribute('style', 'width:' + progress + '%');
       progressBar.setAttribute('aria-valuenow', progress + '');
       progressBar.setAttribute('class',
           'progress-bar progress-bar-striped progress-bar-animated bg-warning');
       if (downloaded == totalLength) {
-        document.getElementById('progess-'+ id).remove();
+        document.getElementById('progess-' + id).remove();
         downloadManager[id] = false;
         downloading.remove();
         finished.appendChild(downloading);
@@ -51,6 +51,7 @@ downloadButton.addEventListener('click', async () => {
         started = true;
         const label = document.getElementById(id + '-label');
         label.innerText = label.innerText + ' - ' + metaData.title;
+        downloading.setAttribute('style', '');
         video.pipe(fs.createWriteStream(metaData.title.replace(
             /[&\/\\#,+()$~%.'":*?<>{}]/g, '') + '.' + dropDown.innerText));
       }
@@ -61,7 +62,8 @@ downloadButton.addEventListener('click', async () => {
 function createDownloading(id) {
   const row = document.createElement('div');
   row.setAttribute('id', id);
-  row.setAttribute('class', 'row');
+  row.setAttribute('class', 'row border');
+  row.setAttribute('style', 'display:none');
 
   const col = document.createElement('div');
   col.setAttribute('class', 'col');
@@ -73,7 +75,7 @@ function createDownloading(id) {
   col.appendChild(label);
 
   const progress = document.createElement('div');
-  progress.setAttribute('id', 'progess-' + id)
+  progress.setAttribute('id', 'progess-' + id);
   progress.setAttribute('class', 'progress');
   col.appendChild(progress);
 
