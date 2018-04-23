@@ -11,17 +11,17 @@ const urlInput = document.getElementById('url_input');
 
 const downloadingArea = document.getElementById('downloading');
 const finished = document.getElementById('finished');
-const manager = {};
+const downloadManager = {};
 
 downloadButton.addEventListener('click', () => {
   const id = urlInput.value;
-  if (!manager[id]) {
-    manager[id] = true;
+  if (!downloadManager[id]) {
+    downloadManager[id] = true;
     const video = ytdl(id);
     const downloading = createDownloading(id);
     downloadingArea.appendChild(downloading);
     video.on('progress', (chunkLength, downloaded, totalLength) => {
-      con.log(chunkLength, downloaded, totalLength);
+      //con.log(chunkLength, downloaded, totalLength);
       const progress = (downloaded / totalLength).toFixed(2) * 100;
       const progressBar = document.getElementById(id + '-bar');
       progressBar.innerText = progress + '%';
@@ -31,13 +31,14 @@ downloadButton.addEventListener('click', () => {
           'progress-bar progress-bar-striped progress-bar-animated');
       if (downloaded == totalLength) {
         progressBar.setAttribute('class', 'progress-bar progress-bar-striped');
-        manager[id] = false;
+        downloadManager[id] = false;
         downloading.remove();
         finished.appendChild(downloading);
       }
     });
-    video.on('info', (chunkLength, downloaded) => {
-      //con.log(chunkLength, downloaded)
+    video.on('info', (metaData, format) => {
+      const label = document.getElementById(id + '-label');
+      label.innerText = label.innerText + ' - ' + metaData.title
     });
     video.pipe(fs.createWriteStream('video.mp4'));
   }
@@ -53,6 +54,7 @@ function createDownloading(id) {
   row.appendChild(col);
 
   const label = document.createElement('label');
+  label.setAttribute('id', id+'-label')
   label.innerText = id
   col.appendChild(label)
 
