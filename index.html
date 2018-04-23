@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }</script>
     <meta charset="UTF-8">
     <title>Dayvie's Youtube Downloader ELECTRON</title>
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="./node_modules/jquery/dist/jquery.js"></script>
-    <script src="./node_modules/popper.js/dist/popper.js"></script>
+    <script src="./node_modules/popper.js/dist/umd/popper.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>if (window.module) module = window.module;</script>
 </head>
 <body>
 
@@ -20,27 +25,23 @@
                    placeholder="Enter Youtubelink"
                    aria-label="Username" aria-describedby="basic-addon1" id="url_input">
         </div>
-        
+        <div class="col">
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdown">mp4</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" id="mp4" href="#">mp4</a>
+                    <a class="dropdown-item" id="m4a" href="#">m4a</a>
+                </div>
+            </div>
+        </div>
 
         <div class="col">
-            <button type="button" class="btn btn-primary" id="download" onClick="download();">Download</button>
+            <button type="button" class="btn btn-primary" id="download">Download</button>
         </div>
     </div>
 
     <div id="downloading">
         Downloading:
-        <!--
-        <div class="row">
-            <div class="col">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                         aria-valuemax="100"
-                         id="progressBar">0%
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
     </div>
     <div id="finished">
         Finished:

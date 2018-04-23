@@ -9,15 +9,21 @@ const ytdl = require('ytdl-core');
 const downloadButton = document.getElementById('download');
 const urlInput = document.getElementById('url_input');
 
+const dropDown = document.getElementById('dropdown');
+const mp4 = document.getElementById('mp4');
+const m4a = document.getElementById('m4a');
+
 const downloadingArea = document.getElementById('downloading');
 const finished = document.getElementById('finished');
 const downloadManager = {};
 
 downloadButton.addEventListener('click', async () => {
-  const id = urlInput.value;
+  const url = urlInput.value;
+  const id = urlInput.value + ' (.' + dropDown.innerText + ')';
   if (!downloadManager[id]) {
     downloadManager[id] = true;
-    const video = ytdl(id);
+    const video = ytdl(url,
+        {filter: (format) => format.container === dropDown.innerText});
     const downloading = createDownloading(id);
     downloadingArea.appendChild(downloading);
     video.on('progress', (chunkLength, downloaded, totalLength) => {
@@ -41,13 +47,12 @@ downloadButton.addEventListener('click', async () => {
     });
     let started = false;
     video.on('info', (metaData, format) => {
-      if (!started){
-        started = true
-        con.log(1)
+      if (!started) {
+        started = true;
         const label = document.getElementById(id + '-label');
         label.innerText = label.innerText + ' - ' + metaData.title;
         video.pipe(fs.createWriteStream(metaData.title.replace(
-            /[&\/\\#,+()$~%.'":*?<>{}]/g, '') + '.mp4'));
+            /[&\/\\#,+()$~%.'":*?<>{}]/g, '') + '.' + dropDown.innerText));
       }
     });
   }
@@ -84,3 +89,11 @@ function createDownloading(id) {
 
   return row;
 }
+
+m4a.addEventListener('click', async () => {
+  dropDown.innerText = m4a.innerText;
+});
+
+mp4.addEventListener('click', async () => {
+  dropDown.innerText = mp4.innerText;
+});
