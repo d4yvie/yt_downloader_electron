@@ -1,0 +1,2 @@
+cd .. && cp -R yt_downloader_electron release_windows/resources/app && mv release_windows/resources/app/yt_downloader_electron release_windows/resources/app
+cd .. && cp -R yt_downloader_electron release_linux/resources/app && mv release_linux/resources/app/yt_downloader_electron release_linux/resources/app

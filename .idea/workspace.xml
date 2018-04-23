@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8ea363a-b34b-414e-b4a3-c6a373f256a6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="d8ea363a-b34b-414e-b4a3-c6a373f256a6" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -51,7 +49,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="612">
-                <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+                <caret line="36" selection-start-line="36" selection-end-line="36" />
               </first_editor>
               <second_editor>
                 <js_state />
@@ -103,7 +101,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="197" />
     <option name="y" value="556" />
     <option name="width" value="1936" />
@@ -177,16 +175,15 @@
       <updated>1524433555862</updated>
       <workItem from="1524433557447" duration="2874000" />
       <workItem from="1524436663863" duration="3689000" />
-      <workItem from="1524473783160" duration="9881000" />
+      <workItem from="1524473783160" duration="10504000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16444000" />
+    <option name="totallyTimeSpent" value="17067000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980299" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -319,7 +316,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="612">
-            <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+            <caret line="36" selection-start-line="36" selection-end-line="36" />
           </first_editor>
           <second_editor>
             <js_state />
