@@ -39,11 +39,16 @@ downloadButton.addEventListener('click', async () => {
     video.on('error', (err) => {
       con.log(err);
     });
+    let started = false;
     video.on('info', (metaData, format) => {
-      const label = document.getElementById(id + '-label');
-      label.innerText = label.innerText + ' - ' + metaData.title;
-      video.pipe(fs.createWriteStream(metaData.title.replace(
-          /[&\/\\#,+()$~%.'":*?<>{}]/g, '') + '.mp4'));
+      if (!started){
+        started = true
+        con.log(1)
+        const label = document.getElementById(id + '-label');
+        label.innerText = label.innerText + ' - ' + metaData.title;
+        video.pipe(fs.createWriteStream(metaData.title.replace(
+            /[&\/\\#,+()$~%.'":*?<>{}]/g, '') + '.mp4'));
+      }
     });
   }
 });
