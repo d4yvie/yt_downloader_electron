@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8ea363a-b34b-414e-b4a3-c6a373f256a6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/renderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/renderer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stylesheets/style.less" beforeDir="false" afterPath="$PROJECT_DIR$/stylesheets/style.less" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,11 +20,20 @@
       <file leaf-file-name="renderer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/renderer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
+            <state relative-caret-position="551">
+              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="info.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/ytdl-core/lib/info.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1071">
+              <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -42,9 +50,16 @@
       <file leaf-file-name="style.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stylesheets/style.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="18" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stylesheets/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-44" />
           </provider>
         </entry>
       </file>
@@ -89,8 +104,8 @@
         <option value="$PROJECT_DIR$/test.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/stylesheets/style.less" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/stylesheets/style.less" />
         <option value="$PROJECT_DIR$/renderer.js" />
       </list>
     </option>
@@ -129,6 +144,12 @@
               <item name="yt_downloader_electron" type="b2602c69:ProjectViewProjectNode" />
               <item name="yt_downloader_electron" type="462c0819:PsiDirectoryNode" />
               <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yt_downloader_electron" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yt_downloader_electron" type="462c0819:PsiDirectoryNode" />
+              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
+              <item name="style.less" type="620a8d5e:NestingTreeNode" />
             </path>
           </expand>
           <select />
@@ -191,10 +212,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24457000" />
+    <option name="totallyTimeSpent" value="25734000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24980299" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -504,12 +526,21 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-44" />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stylesheets/style.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/ytdl-core/lib/info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -522,8 +553,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/renderer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
+        <state relative-caret-position="551">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

@@ -17,7 +17,7 @@ const downloadingArea = document.getElementById('downloading');
 const finished = document.getElementById('finished');
 const downloadManager = {};
 
-downloadButton.addEventListener('click', async () => {
+function downloadHandling() {
   const url = urlInput.value;
   const id = urlInput.value + ' (.' + dropDown.innerText + ')';
   let downloading;
@@ -44,6 +44,7 @@ downloadButton.addEventListener('click', async () => {
     });
     video.on('error', (err) => {
       con.log(err);
+      document.getElementById(id).remove();
     });
     let started = false;
     video.on('info', (metaData, format) => {
@@ -58,7 +59,17 @@ downloadButton.addEventListener('click', async () => {
       }
     });
   }
-});
+}
+
+downloadButton.addEventListener('click', downloadHandling);
+
+urlInput.onkeypress = (e) => {
+  if (!e) e = window.event;
+  const keyCode = e.keyCode || e.which;
+  if (keyCode == '13') {
+    downloadHandling();
+  }
+};
 
 function createFetchingDiv(id, url) {
   const row = document.createElement('div');
