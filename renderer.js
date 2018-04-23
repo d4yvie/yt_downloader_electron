@@ -34,9 +34,9 @@ downloadButton.addEventListener('click', async () => {
       progressBar.setAttribute('style', 'width:' + progress + '%');
       progressBar.setAttribute('aria-valuenow', progress + '');
       progressBar.setAttribute('class',
-          'progress-bar progress-bar-striped progress-bar-animated');
+          'progress-bar progress-bar-striped progress-bar-animated bg-warning');
       if (downloaded == totalLength) {
-        progressBar.setAttribute('class', 'progress-bar progress-bar-striped');
+        document.getElementById('progess-'+ id).remove();
         downloadManager[id] = false;
         downloading.remove();
         finished.appendChild(downloading);
@@ -73,11 +73,12 @@ function createDownloading(id) {
   col.appendChild(label);
 
   const progress = document.createElement('div');
+  progress.setAttribute('id', 'progess-' + id)
   progress.setAttribute('class', 'progress');
   col.appendChild(progress);
 
   const progressBar = document.createElement('div');
-  progressBar.setAttribute('class', 'progress-bar');
+  progressBar.setAttribute('class', 'progress-bar bg-danger');
   progressBar.setAttribute('role', 'progressbar');
   progressBar.setAttribute('aria-valuenow', '0');
   progressBar.setAttribute('aria-valuemin', '0');
