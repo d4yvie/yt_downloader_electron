@@ -13,7 +13,7 @@ const downloadingArea = document.getElementById('downloading');
 const finished = document.getElementById('finished');
 const downloadManager = {};
 
-downloadButton.addEventListener('click', () => {
+downloadButton.addEventListener('click', async () => {
   const id = urlInput.value;
   if (!downloadManager[id]) {
     downloadManager[id] = true;
@@ -36,11 +36,15 @@ downloadButton.addEventListener('click', () => {
         finished.appendChild(downloading);
       }
     });
+    video.on('error', (err) => {
+      con.log(err);
+    });
     video.on('info', (metaData, format) => {
       const label = document.getElementById(id + '-label');
-      label.innerText = label.innerText + ' - ' + metaData.title
+      label.innerText = label.innerText + ' - ' + metaData.title;
+      video.pipe(fs.createWriteStream(metaData.title.replace(
+          /[&\/\\#,+()$~%.'":*?<>{}]/g, '') + '.mp4'));
     });
-    video.pipe(fs.createWriteStream('video.mp4'));
   }
 });
 
@@ -54,9 +58,9 @@ function createDownloading(id) {
   row.appendChild(col);
 
   const label = document.createElement('label');
-  label.setAttribute('id', id+'-label')
-  label.innerText = id
-  col.appendChild(label)
+  label.setAttribute('id', id + '-label');
+  label.innerText = id;
+  col.appendChild(label);
 
   const progress = document.createElement('div');
   progress.setAttribute('class', 'progress');
