@@ -3,3 +3,6 @@
 *mp3
 /build
 /node_modules
+/release_windows
+/release_linux
+/.idea
