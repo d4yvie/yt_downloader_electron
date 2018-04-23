@@ -1,12 +1,12 @@
 {
-  "name": "electron-quick-start",
+  "name": "Dayvie's Youtube Downloader ELECTRON",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Dayvie's Youtube Downloader ELECTRON",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/d4yvie/yt_downloader_electron",
   "keywords": [
     "Electron",
     "quick",
