@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import * as ytdl from 'ytdl-core';
 import * as fs from 'fs';
 import * as path from 'path';
+import { remote } from 'electron';
 
 interface Video {
   url: string;
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dir.nativeElement.value = process.cwd();
+    this.dir.nativeElement.value = remote.app.getAppPath();
   }
 
   downloadHandling = () => {
