@@ -1,0 +1,53 @@
+<div style="height: 5%"></div>
+<div class="full-width flex-row" style="height: 95%">
+  <div class="flex-col"></div>
+  <div class="flex-col" style="flex-grow: 5">
+    <mat-form-field>
+      <input class="full-width" matInput placeholder="Enter your video url here" #urlInput>
+    </mat-form-field>
+    <mat-form-field>
+      <input class="full-width" matInput placeholder="Enter your download folder here" #dir>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [(value)]="selected" required>
+        <mat-option value="mp4">mp4</mat-option>
+        <mat-option value="m4a">m4a</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="downloadHandling()">Download</button>
+  </div>
+  <div class="flex-col">
+  </div>
+  <div class="flex-col" style="flex-grow: 7">
+    <div class="flex-row">
+      Downloading
+    </div>
+    <div class="flex-row">
+      <mat-list>
+        <mat-list-item *ngFor="let video of downloading | keyvalue">
+          <div class="flex-col" style="flex-grow: 2">
+            {{video.value.url}} {{video.value.title}}
+          </div>
+          <div class="flex-col">
+            <mat-progress-bar mode="determinate" [value]="video.value.progress"></mat-progress-bar>
+          </div>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="flex-row">
+      <label>Finished Downloading</label>
+    </div>
+    <div class="flex-row">
+      <mat-list>
+        <mat-list-item *ngFor="let video of done">
+          {{video.url}} {{video.title}}
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="flex-col"></div>
+  </div>
+  <div class="flex-col">
+  </div>
+</div>

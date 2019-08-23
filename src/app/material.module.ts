@@ -1,0 +1,82 @@
+import { NgModule } from '@angular/core';
+import {
+  ErrorStateMatcher,
+  MAT_DATE_LOCALE,
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  ShowOnDirtyErrorStateMatcher,
+  MatCardModule,
+  MatBadgeModule,
+  MatMenuModule,
+  MatProgressSpinnerModule,
+  MatChipsModule,
+  MatListModule,
+  MatSidenavModule,
+  MatCheckboxModule,
+  MatPaginatorModule,
+  MatRadioModule,
+  MatTooltipModule,
+  DateAdapter,
+  MatDividerModule,
+  MatDialogModule,
+  MatStepperModule, MAT_SNACK_BAR_DEFAULT_OPTIONS,
+} from '@angular/material';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+
+@NgModule({
+  declarations: [],
+  imports: [],
+  exports: [
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatAutocompleteModule,
+    MatTableModule,
+    MatTabsModule,
+    MatCardModule,
+    MatBadgeModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatDividerModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    MatPaginatorModule,
+    MatRadioModule,
+    MatListModule,
+    DragDropModule,
+    MatStepperModule,
+    MatProgressBarModule,
+  ],
+  providers: [
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+    { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
+    /*
+    { provide: DateAdapter, useClass: GermanDateAdapter },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: snackbarConfig },
+     */
+  ]
+})
+export class MaterialModule {}
+
