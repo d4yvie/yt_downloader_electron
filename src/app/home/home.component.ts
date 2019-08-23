@@ -21,16 +21,14 @@ export class HomeComponent implements OnInit {
   @ViewChild('urlInput', {static: true}) urlInput;
   @ViewChild('dir', {static: true}) dir;
 
-  downloading = new Map<string, Video>();
-  done = [];
+  readonly downloading = new Map<string, Video>();
+  readonly done = [];
   selected = 'mp4';
 
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnInit() {
-    this.dir.nativeElement.value = remote.app.getAppPath();
+    this.dir.nativeElement.value = remote.app.getPath('desktop');
   }
 
   downloadHandling = () => {
