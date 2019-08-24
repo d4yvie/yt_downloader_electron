@@ -34,6 +34,7 @@ import {
 } from '@angular/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { snackbarConfig } from "./electron-component";
 
 @NgModule({
   declarations: [],
@@ -74,9 +75,7 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
     { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
     /*
     { provide: DateAdapter, useClass: GermanDateAdapter },
+    */
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: snackbarConfig },
-     */
   ]
-})
-export class MaterialModule {}
-
+}) export class MaterialModule {}

@@ -1,7 +1,7 @@
 <div style="height: 5%"></div>
-<div class="full-width flex-row" style="height: 95%">
+<div class="full-width flex-row" style="height: 90%">
   <div class="flex-col"></div>
-  <div class="flex-col" style="flex-grow: 5">
+  <mat-card class="flex-col form-background" style="flex-grow: 5; height: 250px">
     <mat-form-field>
       <input class="full-width" matInput placeholder="Video url" #urlInput>
     </mat-form-field>
@@ -15,53 +15,61 @@
       </mat-select>
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="downloadHandling()">Download</button>
-  </div>
+  </mat-card>
   <div class="flex-col">
   </div>
-  <div class="flex-col" style="flex-grow: 7">
-    <div class="flex-row">
-      Downloading
-    </div>
-    <div class="flex-row">
-      <mat-list>
-        <mat-list-item *ngFor="let video of downloading | keyvalue" style="height: 5vh">
-          <div class="flex-col" style="flex-grow: 2;">
+  <div class="flex-col full-height" style="flex-grow: 7">
+    <mat-card class="form-background" style="height: 35vh">
+      <div class="flex-row">
+        Downloading
+      </div>
+      <div class="flex-row">
+        <mat-list>
+          <mat-list-item *ngFor="let video of downloading | keyvalue" style="height: 6vh">
+            <div class="flex-col" style="flex-grow: 2;">
+              <div class="flex-row">
+                {{video.value.url}} {{video.value.title}} {{video.value.progress}}%
+                <div style="text-align: center;">
+                  <button mat-icon-button aria-label="Cancel download" (click)="cancelDownload(video.value)" matTooltip="Cancel download"
+                          style="float: right;">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="flex-row">
+                <mat-progress-bar [value]="video.value.progress"></mat-progress-bar>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card>
+    <div style="height: 5%"></div>
+    <mat-card class="form-background" style="height: 35vh">
+      <div class="flex-row">
+        <label>Finished Downloading</label>
+      </div>
+      <div class="flex-row">
+        <mat-list>
+          <mat-list-item *ngFor="let video of done | keyvalue" style="height: 5vh">
             <div class="flex-row">
-              {{video.value.url}} {{video.value.title}} {{video.value.progress}}%
+              {{video.value.url}} {{video.value.title}}
               <div style="text-align: center;">
-                <button mat-icon-button aria-label="Cancel download" (click)="cancelDownload(video.value)" style="float: right;">
-                  <mat-icon>cancel</mat-icon>
+                <button mat-icon-button aria-label="Delete File" (click)="deleteDone(video.value)" matTooltip="Delete file"
+                        style="float: right;">
+                  <mat-icon>delete</mat-icon>
                 </button>
               </div>
             </div>
-            <div class="flex-row">
-              <mat-progress-bar [value]="video.value.progress"></mat-progress-bar>
-            </div>
-          </div>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </mat-list>
-    </div>
-    <div class="flex-row">
-      <label>Finished Downloading</label>
-    </div>
-    <div class="flex-row">
-      <mat-list>
-        <mat-list-item *ngFor="let video of done | keyvalue" style="height: 5vh">
-          <div class="flex-row">
-            {{video.value.url}} {{video.value.title}}
-            <div style="text-align: center;">
-              <button mat-icon-button aria-label="Delete File" (click)="deleteDone(video.value)" style="float: right;">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
-          </div>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </mat-list>
-    </div>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card>
     <div class="flex-col"></div>
   </div>
   <div class="flex-col">
   </div>
 </div>
+<div style="height: 5%"></div>
