@@ -25,7 +25,9 @@ export class HomeComponent implements OnInit {
   readonly done = [];
   selected = 'mp4';
 
-  constructor() {}
+  constructor() {
+    setInterval(() => {}, 500);
+  }
 
   ngOnInit() {
     this.dir.nativeElement.value = remote.app.getPath('desktop');
@@ -41,14 +43,14 @@ export class HomeComponent implements OnInit {
         this.downloading.set(video.id, video);
         const state = ytdl(url, {filter: (format) => format.container === this.selected});
         state.on('progress', async (chunkLength, downloaded, totalLength) => {
-          video.progress = (downloaded / totalLength) * 100;
+          video.progress = Math.floor(downloaded / totalLength  * 100);
           if (downloaded === totalLength) {
             this.downloading.delete(video.id);
             this.done.push(video)
           }
         });
         state.on('error', (err) => {
-          console.error(err)
+          console.error(err);
           this.downloading.delete(video.id);
         });
         state.on('info', async (metaData, format) => {

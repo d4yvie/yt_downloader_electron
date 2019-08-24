@@ -24,12 +24,12 @@
     </div>
     <div class="flex-row">
       <mat-list>
-        <mat-list-item *ngFor="let video of downloading | keyvalue">
-          <div class="flex-col" style="flex-grow: 2">
-            {{video.value.url}} {{video.value.title}}
+        <mat-list-item *ngFor="let video of downloading | keyvalue" style=" height: 5vh">
+          <div class="flex-col" style="flex-grow: 2;">
+            {{video.value.url}} {{video.value.title}} {{video.value.progress}}%
           </div>
           <div class="flex-col">
-            <mat-progress-bar mode="determinate" [value]="video.value.progress"></mat-progress-bar>
+            <mat-progress-bar [value]="video.value.progress"></mat-progress-bar>
           </div>
           <mat-divider></mat-divider>
         </mat-list-item>
