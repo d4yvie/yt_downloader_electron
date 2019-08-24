@@ -3,9 +3,9 @@ import * as ytdl from 'ytdl-core';
 import * as fs from 'fs';
 import * as path from 'path';
 import { remote } from 'electron';
-import * as util from "util";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { ElectronComponent } from "../electron-component";
+import * as util from 'util';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ElectronComponent } from '../electron-component';
 
 const unlink = util.promisify(fs.unlink);
 
