@@ -2,7 +2,7 @@
   "name": "Dayvies_YoutubeDownloader",
   "version": "6.1.0",
   "description": "Angular 8 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "homepage": "https://github.com/d4yvie/yt_downloader_electron",
   "author": {
     "name": "David Yesil",
     "email": "D4V3Z02@gmail.com"
