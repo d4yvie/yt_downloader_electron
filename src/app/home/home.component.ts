@@ -3,12 +3,19 @@ import * as ytdl from 'ytdl-core';
 import * as fs from 'fs';
 import * as path from 'path';
 import { remote } from 'electron';
+import * as util from "util";
+
+const unlink = util.promisify(fs.unlink);
 
 interface Video {
   url: string;
   id: string;
+  filePath: string;
   title: string;
   progress: number;
+  ytdl?: any;
+  stream?: any;
+  writeStream?: any;
 }
 
 @Component({
@@ -38,32 +45,42 @@ export class HomeComponent implements OnInit {
     if (ytdl.validateURL(url)) {
       const video = this.createVideo(url);
       if (!this.downloading.has(video.id)) {
-        let stream;
-        let writeStream;
         this.downloading.set(video.id, video);
-        const state = ytdl(url, {filter: (format) => format.container === this.selected});
-        state.on('progress', async (chunkLength, downloaded, totalLength) => {
+        const downloadState = ytdl(url, {filter: (format) => format.container === this.selected});
+        video.ytdl = downloadState;
+        downloadState.on('progress', async (chunkLength, downloaded, totalLength) => {
           video.progress = Math.floor(downloaded / totalLength  * 100);
           if (downloaded === totalLength) {
             this.downloading.delete(video.id);
             this.done.push(video)
           }
         });
-        state.on('error', (err) => {
+        downloadState.on('error', (err) => {
           console.error(err);
           this.downloading.delete(video.id);
         });
-        state.on('info', async (metaData, format) => {
+        downloadState.on('info', async (metaData, format) => {
           const fileName = `${metaData.title.replace(/[^a-z0-9]/gi, '_')}.${this.selected}`;
           video.title = fileName;
-          writeStream = fs.createWriteStream(path.resolve(this.dir.nativeElement.value, fileName));
-          stream = state.pipe(writeStream);
+          video.filePath = path.resolve(this.dir.nativeElement.value, fileName);
+          video.writeStream = fs.createWriteStream(video.filePath);
+          video.stream = downloadState.pipe(video.writeStream);
         });
       }
     }
   }
 
   createVideo(url: string): Video {
-    return {url, id: ytdl.getVideoID(url) as string + this.selected, title: '', progress: 0};
+    return {url, id: ytdl.getVideoID(url) as string + this.selected, title: '', progress: 0, filePath: ''};
+  }
+
+  async cancelDownload(id: string) {
+    const video = this.downloading.get(id);
+    if (video) {
+      video.writeStream.destroy();
+      video.stream.close();
+      this.downloading.delete(id);
+      await unlink(video.filePath);
+    }
   }
 }

@@ -26,10 +26,15 @@
       <mat-list>
         <mat-list-item *ngFor="let video of downloading | keyvalue" style=" height: 5vh">
           <div class="flex-col" style="flex-grow: 2;">
-            {{video.value.url}} {{video.value.title}} {{video.value.progress}}%
-          </div>
-          <div class="flex-col">
-            <mat-progress-bar [value]="video.value.progress"></mat-progress-bar>
+            <div class="flex-row">
+              {{video.value.url}} {{video.value.title}} {{video.value.progress}}%
+              <button mat-icon-button aria-label="Cancel download" (click)="cancelDownload(video.value.id)">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </div>
+            <div class="flex-row">
+              <mat-progress-bar [value]="video.value.progress"></mat-progress-bar>
+            </div>
           </div>
           <mat-divider></mat-divider>
         </mat-list-item>
