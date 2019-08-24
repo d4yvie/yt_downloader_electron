@@ -3,13 +3,13 @@
   <div class="flex-col"></div>
   <div class="flex-col" style="flex-grow: 5">
     <mat-form-field>
-      <input class="full-width" matInput placeholder="Enter your video url here" #urlInput>
+      <input class="full-width" matInput placeholder="Video url" #urlInput>
     </mat-form-field>
     <mat-form-field>
-      <input class="full-width" matInput placeholder="Enter your download folder here" #dir>
+      <input class="full-width" matInput placeholder="Download folder" #dir>
     </mat-form-field>
     <mat-form-field>
-      <mat-select [(value)]="selected" required>
+      <mat-select [(value)]="selected" placeholder="File format">
         <mat-option value="mp4">mp4</mat-option>
         <mat-option value="m4a">m4a</mat-option>
       </mat-select>
@@ -24,13 +24,15 @@
     </div>
     <div class="flex-row">
       <mat-list>
-        <mat-list-item *ngFor="let video of downloading | keyvalue" style=" height: 5vh">
+        <mat-list-item *ngFor="let video of downloading | keyvalue" style="height: 5vh">
           <div class="flex-col" style="flex-grow: 2;">
             <div class="flex-row">
               {{video.value.url}} {{video.value.title}} {{video.value.progress}}%
-              <button mat-icon-button aria-label="Cancel download" (click)="cancelDownload(video.value.id)">
-                <mat-icon>cancel</mat-icon>
-              </button>
+              <div style="text-align: center;">
+                <button mat-icon-button aria-label="Cancel download" (click)="cancelDownload(video.value)" style="float: right;">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </div>
             </div>
             <div class="flex-row">
               <mat-progress-bar [value]="video.value.progress"></mat-progress-bar>
@@ -45,8 +47,15 @@
     </div>
     <div class="flex-row">
       <mat-list>
-        <mat-list-item *ngFor="let video of done">
-          {{video.url}} {{video.title}}
+        <mat-list-item *ngFor="let video of done | keyvalue" style="height: 5vh">
+          <div class="flex-row">
+            {{video.value.url}} {{video.value.title}}
+            <div style="text-align: center;">
+              <button mat-icon-button aria-label="Delete File" (click)="deleteDone(video.value)" style="float: right;">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
           <mat-divider></mat-divider>
         </mat-list-item>
       </mat-list>

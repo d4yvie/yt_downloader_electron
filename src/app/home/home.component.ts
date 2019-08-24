@@ -29,11 +29,11 @@ export class HomeComponent implements OnInit {
   @ViewChild('dir', {static: true}) dir;
 
   readonly downloading = new Map<string, Video>();
-  readonly done = [];
+  readonly done = new Map<string, Video>();
   selected = 'mp4';
 
   constructor() {
-    setInterval(() => {}, 500);
+    setInterval(() => {}, 500); // allow correct rerendering
   }
 
   ngOnInit() {
@@ -49,10 +49,10 @@ export class HomeComponent implements OnInit {
         const downloadState = ytdl(url, {filter: (format) => format.container === this.selected});
         video.ytdl = downloadState;
         downloadState.on('progress', async (chunkLength, downloaded, totalLength) => {
-          video.progress = Math.floor(downloaded / totalLength  * 100);
+          video.progress = Math.floor(downloaded / totalLength * 100);
           if (downloaded === totalLength) {
             this.downloading.delete(video.id);
-            this.done.push(video)
+            this.done.set(video.id, video);
           }
         });
         downloadState.on('error', (err) => {
@@ -74,13 +74,19 @@ export class HomeComponent implements OnInit {
     return {url, id: ytdl.getVideoID(url) as string + this.selected, title: '', progress: 0, filePath: ''};
   }
 
-  async cancelDownload(id: string) {
-    const video = this.downloading.get(id);
-    if (video) {
-      video.writeStream.destroy();
-      video.stream.close();
-      this.downloading.delete(id);
-      await unlink(video.filePath);
-    }
+  async cancelDownload(video: Video) {
+    video.writeStream.destroy();
+    video.stream.close();
+    this.downloading.delete(video.id);
+    await this.deleteVideo(video);
+  }
+
+  async deleteDone(video: Video) {
+    this.done.delete(video.id);
+    this.deleteVideo(video);
+  }
+
+  async deleteVideo(video: Video) {
+    return unlink(video.filePath);
   }
 }
