@@ -44,6 +44,7 @@ export class HomeComponent extends ElectronComponent implements OnInit {
 
   downloadHandling = () => {
     const url = this.urlInput.nativeElement.value;
+    this.urlInput.nativeElement.value = '';
     if (ytdl.validateURL(url)) {
       const video = this.createVideo(url);
       if (!this.downloading.has(video.id)) {
