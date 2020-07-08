@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { remote } from 'electron';
 import * as util from 'util';
+import * as lineReader from 'line-reader';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ElectronComponent } from '../electron-component';
 
@@ -29,6 +30,7 @@ export class HomeComponent extends ElectronComponent implements OnInit {
 
   @ViewChild('urlInput', {static: true}) urlInput;
   @ViewChild('dir', {static: true}) dir;
+  @ViewChild('file', {static: true}) file;
 
   readonly downloading = new Map<string, Video>();
   readonly done = new Map<string, Video>();
@@ -40,11 +42,22 @@ export class HomeComponent extends ElectronComponent implements OnInit {
 
   ngOnInit() {
     this.dir.nativeElement.value = remote.app.getPath('desktop');
+    this.file.nativeElement.value = remote.app.getPath('desktop') + '\\' + 'videos.txt';
   }
 
-  downloadHandling = () => {
-    const url = this.urlInput.nativeElement.value;
+  downloadFromUrl = () => {
+    this.downloadHandling(this.urlInput.nativeElement.value);
     this.urlInput.nativeElement.value = '';
+  }
+
+  downloadFromTextFile = () => {
+    lineReader.eachLine(this.file.nativeElement.value, (line, last) => {
+      this.downloadHandling(line);
+      return !last;
+    });
+  }
+
+  downloadHandling = (url) => {
     if (ytdl.validateURL(url)) {
       const video = this.createVideo(url);
       if (!this.downloading.has(video.id)) {
