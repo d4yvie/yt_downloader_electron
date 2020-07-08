@@ -3,9 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var electron_1 = require("electron");
 var path = require("path");
 var url = require("url");
-var win, serve;
-var args = process.argv.slice(1);
-serve = args.some(function (val) { return val === '--serve'; });
+var win = null;
+var args = process.argv.slice(1), serve = args.some(function (val) { return val === '--serve'; });
 function createWindow() {
     var electronScreen = electron_1.screen;
     var size = electronScreen.getPrimaryDisplay().workAreaSize;
@@ -17,9 +16,11 @@ function createWindow() {
         height: size.height,
         webPreferences: {
             nodeIntegration: true,
+            allowRunningInsecureContent: (serve) ? true : false,
         },
     });
     if (serve) {
+        win.webContents.openDevTools();
         require('electron-reload')(__dirname, {
             electron: require(__dirname + "/node_modules/electron")
         });
@@ -32,9 +33,6 @@ function createWindow() {
             slashes: true
         }));
     }
-    if (serve) {
-        win.webContents.openDevTools();
-    }
     // Emitted when the window is closed.
     win.on('closed', function () {
         // Dereference the window object, usually you would store window
@@ -42,12 +40,15 @@ function createWindow() {
         // when you should delete the corresponding element.
         win = null;
     });
+    return win;
 }
 try {
+    electron_1.app.allowRendererProcessReuse = true;
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
     // Some APIs can only be used after this event occurs.
-    electron_1.app.on('ready', createWindow);
+    // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
+    electron_1.app.on('ready', function () { return setTimeout(createWindow, 400); });
     // Quit when all windows are closed.
     electron_1.app.on('window-all-closed', function () {
         // On OS X it is common for applications and their menu bar

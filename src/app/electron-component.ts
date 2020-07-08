@@ -1,6 +1,7 @@
 import { OnDestroy } from '@angular/core';
-import { MatDialog, MatDialogRef, MatSnackBarConfig } from '@angular/material';
 import { Subscription, TeardownLogic } from "rxjs";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatSnackBarConfig } from "@angular/material/snack-bar";
 
 /**
  * Manages Subscriptions which are unsubscribed when a Component, Directive or Module specific Service is destroyed.
