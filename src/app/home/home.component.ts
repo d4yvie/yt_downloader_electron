@@ -51,10 +51,7 @@ export class HomeComponent extends ElectronComponent implements OnInit {
   }
 
   downloadFromTextFile = () => {
-    lineReader.eachLine(this.file.nativeElement.value, (line, last) => {
-      this.downloadHandling(line);
-      return !last;
-    });
+    lineReader.eachLine(this.file.nativeElement.value, this.downloadHandling);
   }
 
   downloadHandling = (url) => {
