@@ -22,7 +22,7 @@ export class HomeComponent extends ElectronComponent implements OnInit {
 
   downloading: Observable<Map<string, Video>>;
   done: Observable<Map<string, Video>>;
-  selected = 'mp4';
+  selected = 'video';
 
   constructor(private readonly snackBar: MatSnackBar, private readonly youtubeDownloadService: YoutubeDownloadService) {
     super();

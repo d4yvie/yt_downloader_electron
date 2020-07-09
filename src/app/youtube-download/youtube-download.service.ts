@@ -53,7 +53,19 @@ export class YoutubeDownloadService {
           this.deleteDone(video);
         }
         this.setDownloading(video);
-        const downloadState = ytdl(url, {filter: (format) => format.container === selectedFormat});
+        let downloadState;
+        if (selectedFormat === 'audio') {
+          downloadState = ytdl(url, {filter: (format) =>  {
+              console.log(format)
+              return format.mimeType.includes(selectedFormat);
+            }, quality: 'highestaudio'});
+        } else {
+          downloadState = ytdl(url, {filter: (format) =>  {
+              console.log(format)
+              return format.mimeType.includes(selectedFormat);
+            }});
+        }
+        console.log(downloadState)
         video.ytdl = downloadState;
         downloadState.on('progress', async (chunkLength, downloaded, totalLength) => {
           video.progress = Math.floor(downloaded / totalLength * 100);

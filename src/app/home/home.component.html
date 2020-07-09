@@ -12,8 +12,8 @@
       </mat-form-field>
       <mat-form-field>
         <mat-select [(value)]="selected" placeholder="File format">
-          <mat-option value="mp4">mp4</mat-option>
-          <mat-option value="m4a">m4a</mat-option>
+          <mat-option value="video">video</mat-option>
+          <mat-option value="audio">audio</mat-option>
         </mat-select>
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="downloadFromUrl()">Download Video</button>
@@ -32,7 +32,7 @@
   <div class="flex-col">
   </div>
   <div class="flex-col full-height" style="flex-grow: 7">
-    <mat-card class="form-background" style="height: 35vh">
+    <mat-card class="form-background" style="height: 35vh; overflow-y: auto">
       <div class="flex-row">
         Downloading
       </div>
@@ -59,7 +59,7 @@
       </div>
     </mat-card>
     <div style="height: 5%"></div>
-    <mat-card class="form-background" style="height: 35vh">
+    <mat-card class="form-background" style="height: 35vh; overflow-y: auto">
       <div class="flex-row">
         <label>Finished Downloading</label>
       </div>
