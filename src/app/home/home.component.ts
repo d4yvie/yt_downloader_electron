@@ -42,7 +42,7 @@ export class HomeComponent extends ElectronComponent implements OnInit {
 
   ngOnInit() {
     this.dir.nativeElement.value = remote.app.getPath('desktop');
-    this.file.nativeElement.value = remote.app.getPath('desktop') + '\\' + 'videos.txt';
+    this.file.nativeElement.value = remote.app.getPath('desktop') + path.sep + 'videos.txt';
   }
 
   downloadFromUrl = () => {
