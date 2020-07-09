@@ -38,7 +38,7 @@
       </div>
       <div class="flex-row">
         <mat-list>
-          <mat-list-item *ngFor="let video of downloading | keyvalue" style="height: 6vh">
+          <mat-list-item *ngFor="let video of downloading | async | keyvalue" style="height: 6vh">
             <div class="flex-col" style="flex-grow: 2;">
               <div class="flex-row">
                 {{video.value.url}} {{video.value.title}} {{video.value.progress}}%
@@ -65,7 +65,7 @@
       </div>
       <div class="flex-row">
         <mat-list>
-          <mat-list-item *ngFor="let video of done | keyvalue" style="height: 5vh">
+          <mat-list-item *ngFor="let video of done | async | keyvalue" style="height: 5vh">
             <div class="flex-row">
               {{video.value.url}} {{video.value.title}}
               <div style="text-align: center;">
