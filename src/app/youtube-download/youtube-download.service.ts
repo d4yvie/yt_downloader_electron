@@ -80,7 +80,7 @@ export class YoutubeDownloadService {
           this.deleteDownloading(video);
         });
         downloadState.on('info', async (metaData, format) => {
-          const fileName = `${metaData.title.replace(/[^a-z0-9]/gi, '_')}_${format.quality ? format.quality: ''}_${format.audioBitrate}.${format.container}`;
+          const fileName = `${metaData.videoDetails.title.replace(/[^a-z0-9]/gi, '_')}_${format.quality ? format.quality: ''}_${format.audioBitrate}.${format.container}`;
           video.title = fileName;
           this.snackBar.open(`Started downloading ${video.title}`);
           video.filePath = path.resolve(directory, fileName);
