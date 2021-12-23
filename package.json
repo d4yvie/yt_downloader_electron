@@ -98,6 +98,6 @@
     "@angular/material": "^9.2.4",
     "hammerjs": "^2.0.8",
     "line-reader": "0.4.0",
-    "ytdl-core": "^4.0.6"
+    "ytdl-core": "^4.9.1"
   }
 }
